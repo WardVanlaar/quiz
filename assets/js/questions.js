@@ -1,59 +1,58 @@
-// creating an array and passing the number, questions, options, and answers
 
 let questions = [
     {
     numb: 1,
-    question: "What does HTML stand for?",
-    answer: "Hyper Text Markup Language",
+    question: "Commonly used data types DO Not include:",
+    answer: "alerts",
     options: [
-      "Hyper Text Preprocessor",
-      "Hyper Text Markup Language",
-      "Hyper Text Multiple Language",
-      "Hyper Tool Multi Language"
+      "strings",
+      "booleans",
+      "alerts",
+      "numbers"
     ]
   },
     {
     numb: 2,
-    question: "What does CSS stand for?",
-    answer: "Cascading Style Sheet",
+    question: "Arrays in JavaScript can be used to store __________.",
+    answer: "all of the above",
     options: [
-      "Common Style Sheet",
-      "Colorful Style Sheet",
-      "Computer Style Sheet",
-      "Cascading Style Sheet"
+      "numbers and strings",
+      "other arrays",
+      "booleans",
+      "all of the above"
     ]
   },
     {
     numb: 3,
-    question: "What does PHP stand for?",
-    answer: "Hypertext Preprocessor",
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    answer: "console.log",
     options: [
-      "Hypertext Preprocessor",
-      "Hypertext Programming",
-      "Hypertext Preprogramming",
-      "Hometext Preprocessor"
+      "JavaScript",
+      "terminal/bash",
+      "for loops",
+      "console.log"
     ]
   },
     {
     numb: 4,
-    question: "What does SQL stand for?",
-    answer: "Structured Query Language",
+    question: "String values must be enclosed within________when being assigned to variables.",
+    answer: "quotes",
     options: [
-      "Stylish Question Language",
-      "Stylesheet Query Language",
-      "Statement Question Language",
-      "Structured Query Language"
+      "commas",
+      "curly brackets",
+      "quotes",
+      "parenthesis"
     ]
   },
     {
     numb: 5,
-    question: "What does XML stand for?",
-    answer: "eXtensible Markup Language",
+    question: "The condition in an if / else statement is enclosed with_________.",
+    answer: "curly brackets",
     options: [
-      "eXtensible Markup Language",
-      "eXecutable Multiple Language",
-      "eXTra Multi-Program Language",
-      "eXamine Multiple Language"
+      "quotes",
+      "curly brackets",
+      "parenthesis",
+      "square brackets"
     ]
   },
 ];
