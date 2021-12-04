@@ -9,11 +9,10 @@ const chs_btn = document.querySelector("chs_btn");
 const quiz_box = document.querySelector("#quiz_box");
 const result_box = document.querySelector("#result_box");
 const option_list = document.querySelector(".option_list");
-const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
-let timeValue =  75;
+let time =  75;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -25,7 +24,6 @@ start_btn.onclick = ()=>{
     showQuestions(0); //calling showQestions function
     queCounter(1);
     startTimer(75); //calling startTimer function
-    //startTimerLine(0); //calling startTimerLine function
 }
 
 // getting questions and options from array
@@ -45,7 +43,7 @@ function showQuestions(index){
     for(i=0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
-}
+}       
 
 //if user clicked on option
 function optionSelected(answer){
@@ -53,22 +51,22 @@ function optionSelected(answer){
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
     
-    if(userAns == correcAns && (que_count < questions.length-1)) { //if user selected option is equal to array's correct answer
+    if (userAns == correcAns && (que_count < questions.length-1)) { //if user selected option is equal to array's correct answer
         que_count++;
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
-        clearInterval(counter);
-    }else{
+    } else if (userAns != correcAns && (que_count < questions.length-1)) {
         que_count++;
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
-        clearInterval(counter);
-
-        //deduct 10 seconds from time remaining
-        //go to next question
-        //add "wrong"
+        timerPen();
+        console.log(time);
+        debugger;
+        console.log(time);
+    } else {
+        showresult();
     }
 }
 
@@ -77,35 +75,19 @@ function startTimer(time){
     function timer(){
         timeCount.textContent = time; //changing the value of timeCount with time value
         time--; //decrement the time value
-        if(time < 9){ //if timer is less than 9
-            let addZero = timeCount.textContent; 
-            timeCount.textContent = "0" + addZero; //add a 0 before time value
-        }
-        if(time < 0){ //if timer is less than 0
-            clearInterval(counter); //clear counter
-            timeText.textContent = "Time Off"; //change the time text to time off
-            const allOptions = option_list.children.length; //getting all option items
-            let correcAns = questions[que_count].answer; //getting correct answer from array
-            for(i=0; i < allOptions; i++){
-                if(option_list.children[i].textContent != correcAns){ //if there is an option which is matched to an array answer
-                    time = time - 10;
-                    console.log("Time Off: Auto selected correct answer.");
-                }
-            }
-            next_btn.classList.add("show"); //show the next button if user selected any option
-        }
+    }
+    if(time <= 0){ //if timer is less than 0
+            showresult();
     }
 }
-// function startTimerLine(time){
-//     counterLine = setInterval(timer, 29);
-//     function timer(){
-//         time += 1; //upgrading time value with 1
-//         time_line.style.width = time + "px"; //increasing width of time_line with px by time value
-//         if(time > 549){ //if time value is greater than 549
-//             clearInterval(counterLine); //clear counterLine
-//         }
-//     }
-// }
+
+function timerPen() {
+    clearInterval(counter);
+    time = timeCount.textContent - 10;
+    timeCount.textContent = time;
+    time--;
+    startTimer(time);
+}
 
 function queCounter(index){
     //creating a new span tag and passing the question number and total question
