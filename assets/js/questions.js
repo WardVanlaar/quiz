@@ -5,10 +5,10 @@ let questions = [
     question: "Commonly used data types DO Not include:",
     answer: "alerts",
     options: [
-      "strings",
-      "booleans",
-      "alerts",
-      "numbers"
+      "1. strings",
+      "2. booleans",
+      "3. alerts",
+      "4. numbers"
     ]
   },
     {
@@ -16,10 +16,10 @@ let questions = [
     question: "Arrays in JavaScript can be used to store __________.",
     answer: "all of the above",
     options: [
-      "numbers and strings",
-      "other arrays",
-      "booleans",
-      "all of the above"
+      "1. numbers and strings",
+      "2. other arrays",
+      "3. booleans",
+      "4. all of the above"
     ]
   },
     {
@@ -27,10 +27,10 @@ let questions = [
     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
     answer: "console.log",
     options: [
-      "JavaScript",
-      "terminal/bash",
-      "for loops",
-      "console.log"
+      "1. JavaScript",
+      "2. terminal/bash",
+      "3. for loops",
+      "4. console.log"
     ]
   },
     {
@@ -38,10 +38,10 @@ let questions = [
     question: "String values must be enclosed within________when being assigned to variables.",
     answer: "quotes",
     options: [
-      "commas",
-      "curly brackets",
-      "quotes",
-      "parenthesis"
+      "1. commas",
+      "2. curly brackets",
+      "3. quotes",
+      "4. parenthesis"
     ]
   },
     {
@@ -49,10 +49,10 @@ let questions = [
     question: "The condition in an if / else statement is enclosed with_________.",
     answer: "curly brackets",
     options: [
-      "quotes",
-      "curly brackets",
-      "parenthesis",
-      "square brackets"
+      "1. quotes",
+      "2. curly brackets",
+      "3. parenthesis",
+      "4. square brackets"
     ]
   },
 ];
