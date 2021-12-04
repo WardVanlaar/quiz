@@ -70,6 +70,27 @@ function optionSelected(answer){
     }
 }
 
+function showResult(){
+    info_box.classList.remove("activeInfo"); //hide info box
+    quiz_box.classList.remove("activeQuiz"); //hide quiz box
+    result_box.classList.add("activeResult"); //show result box
+    const scoreText = result_box.querySelector(".score_text");
+    if (userScore > 3){ // if user scored more than 3
+        //creating a new span tag and passing the user score number and total question number
+        let scoreTag = '<span>and congrats! , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
+        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
+    }
+    else if(userScore > 1){ // if user scored more than 1
+        let scoreTag = '<span>and nice , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
+    else{ // if user scored less than 1
+        let scoreTag = '<span>and sorry , You got only <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
+}
+
+//timer fuction
 function startTimer(time){
     counter = setInterval(timer, 1000);
     function timer(){
@@ -81,6 +102,7 @@ function startTimer(time){
     }
 }
 
+//penalize function to subtract 10 seconds when wrong answer selected
 function timerPen() {
     clearInterval(counter);
     time = timeCount.textContent - 10;
@@ -89,32 +111,9 @@ function timerPen() {
     startTimer(time);
 }
 
+//keeping track of question numbers
 function queCounter(index){
     //creating a new span tag and passing the question number and total question
     let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
 }
-
-
-
-
-
-// function showResult(){
-//     info_box.classList.remove("activeInfo"); //hide info box
-//     quiz_box.classList.remove("activeQuiz"); //hide quiz box
-//     result_box.classList.add("activeResult"); //show result box
-//     const scoreText = result_box.querySelector(".score_text");
-//     if (userScore > 3){ // if user scored more than 3
-//         //creating a new span tag and passing the user score number and total question number
-//         let scoreTag = '<span>and congrats! , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-//         scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-//     }
-//     else if(userScore > 1){ // if user scored more than 1
-//         let scoreTag = '<span>and nice , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-//         scoreText.innerHTML = scoreTag;
-//     }
-//     else{ // if user scored less than 1
-//         let scoreTag = '<span>and sorry , You got only <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-//         scoreText.innerHTML = scoreTag;
-//     }
-// }
 
