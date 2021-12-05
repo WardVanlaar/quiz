@@ -1,0 +1,80 @@
+<!-- code adapted from https://www.codingnepalweb.com/quiz-app-with-timer-javascript/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+        <!--Intro page-->
+        <div class="page info_box">
+            <header>
+                <div class="hs_btn"><button id="hs_btn">View high scores</button></div>
+                <div class="timer">
+                    <div class="time_left_txt">Time:</div>
+                    <div class="timer_sec">75</div>
+                </div>
+            </header>
+            <section>
+                <h1>Coding Quiz Challenge</h1>
+                <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds.</p>
+                <div class="btn"><button id="start_btn">Start Quiz</button></div>
+            </section>
+        </div>
+
+        <!-- Quiz Box -->
+        <div class="page quiz_box">
+            <header>
+                <div class="hs_btn"><button>View high scores</button></div>
+                <div class="timer">
+                    <div class="time_left_txt">Time:</div>
+                    <div class="timer_sec"></div>
+                </div>
+            </header>
+            <section>
+                <div class="que_text">
+                </div>
+                <div class="option_list">
+                </div>
+            </section>
+        </div>
+
+        <!-- Results -->
+        <div class="page result_box">
+            <header>
+                <div class="hs_btn"><button>View high scores</button></div>
+                <div class="timer">
+                    <div class="time_left_txt">Time:</div>
+                    <div class="timer_sec"></div>
+                </div>
+            </header>
+            <section>
+                <div class="complete_text">All done!</div>
+                <div class="score_text">Your final score is</div>
+                <div class="score_text" id="user_score"></div>
+                <div class="form-group">
+                    <input type="text" name="initials" placeholder="Enter initials" />
+                </div>
+                <div class="btn">
+                    <button class="restart" id="submit-btn">Submit</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="hs_box">
+            <section>
+                <h1>High scores</h1>
+                <div>Results</div>
+                <button class="btn" id="gb-btn">Go back</button>
+                <button class="btn" id="chs-btn">Clear high scores</button>
+            </section>
+        </div>
+
+        <script src="./assets/js/questions.js"></script>
+        <script src="./assets/js/script.js"></script>
+</body>
+</html>
