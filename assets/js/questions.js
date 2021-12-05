@@ -1,3 +1,4 @@
+//code adapted from https://www.codingnepalweb.com/quiz-app-with-timer-javascript/
 
 let questions = [
     {

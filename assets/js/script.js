@@ -12,6 +12,7 @@ const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
+const timeCounter = document.querySelector(".timer_sec");
 
 let time = 75;
 let que_count = 0;
@@ -105,7 +106,8 @@ function optionSelected(answer){
 function startTimer(time){
     counter = setInterval(timer, 1000);
     function timer(){
-        timeCount.textContent = time; //changing the value of timeCount with time value
+        console.log(timeCounter, time);
+        timeCounter.innerHTML = time; //changing the value of timeCount with time value
         time--; //decrement the time value
         if(time < 0) {
             clearInterval(counter);
