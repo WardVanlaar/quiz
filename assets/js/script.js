@@ -5,14 +5,15 @@ const hs_btn = document.querySelector("#hs_btn");
 const start_btn = document.querySelector("#start_btn");
 const submit_btn = document.querySelector("#submit_btn");
 const gb_btn = document.querySelector("#gb_btn");
-const chs_btn = document.querySelector("chs_btn");
-const quiz_box = document.querySelector("#quiz_box");
-const result_box = document.querySelector("#result_box");
+const chs_btn = document.querySelector("#chs_btn");
+const info_box = document.querySelector(".info_box")
+const quiz_box = document.querySelector(".quiz_box");
+const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
-let time =  75;
+let time = 75;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -20,6 +21,7 @@ let widthValue = 0;
 
 // if startQuiz button clicked
 start_btn.onclick = ()=>{
+    info_box.classList.remove("activeInfo"); //hide intro
     quiz_box.classList.add("activeQuiz"); //show quiz box
     showQuestions(0); //calling showQestions function
     queCounter(1);
@@ -43,7 +45,20 @@ function showQuestions(index){
     for(i=0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
-}       
+}
+
+function showResult(){
+    quiz_box.classList.remove("activeQuiz"); //hide quiz box
+    result_box.classList.add("activeResult"); //show result box
+    const scoreText = result_box.querySelector("#user_score");
+    time++;
+    scoreText.innerHTML = time;  //adding new span tag inside score_Text
+}
+
+function highScore(){
+    result_box.classList.remove("activeResult"); //hide result box
+    hs_box.classList.add("activeHs"); //show high score box
+}
 
 //if user clicked on option
 function optionSelected(answer){
@@ -51,54 +66,50 @@ function optionSelected(answer){
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
     
-    if (userAns == correcAns && (que_count < questions.length-1)) { //if user selected option is equal to array's correct answer
+    if (userAns == correcAns && (que_numb <= questions.length-1) && time>0) { //if user selected option is equal to array's correct answer
         que_count++;
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
-    } else if (userAns != correcAns && (que_count < questions.length-1)) {
+    } else if (userAns != correcAns && (que_numb <= questions.length-1) && time>0) {
         que_count++;
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
         timerPen();
         console.log(time);
-        debugger;
+    } else if (userAns == correcAns && que_numb == questions.length && time>0) {
+        showQuestions(que_count);
+        queCounter(que_numb);
+        clearInterval(counter);
         console.log(time);
-    } else {
-        showresult();
+        showResult();
+    } else if (userAns != correcAns && que_numb == questions.length && time>0) {
+        showQuestions(que_count);
+        queCounter(que_numb);
+        timerPen();
+        clearInterval(counter);
+        console.log(time);
+        showResult();
     }
 }
 
-function showResult(){
-    info_box.classList.remove("activeInfo"); //hide info box
-    quiz_box.classList.remove("activeQuiz"); //hide quiz box
-    result_box.classList.add("activeResult"); //show result box
-    const scoreText = result_box.querySelector(".score_text");
-    if (userScore > 3){ // if user scored more than 3
-        //creating a new span tag and passing the user score number and total question number
-        let scoreTag = '<span>and congrats! , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-    }
-    else if(userScore > 1){ // if user scored more than 1
-        let scoreTag = '<span>and nice , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-    else{ // if user scored less than 1
-        let scoreTag = '<span>and sorry , You got only <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-}
+// function noClick() {
+//     if (time==0) {
+//         clearInterval(counter);
+//         scoreText.innerHTML = "0"; 
+//     }
+// }
 
-//timer fuction
+//timer function
 function startTimer(time){
     counter = setInterval(timer, 1000);
     function timer(){
         timeCount.textContent = time; //changing the value of timeCount with time value
         time--; //decrement the time value
-    }
-    if(time <= 0){ //if timer is less than 0
-            showresult();
+        if(time < 0) {
+            clearInterval(counter);
+        }
     }
 }
 
