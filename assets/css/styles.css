@@ -11,10 +11,10 @@
 .info_box,
 .quiz_box,
 .result_box,
-.hs_box{
-    position: absolute;
-    top: 20%;
-    left: 5%;
+.hs_box {
+    position: absolute; 
+    top: 40%;
+    left: 25%;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
                 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -64,13 +64,27 @@
 
 .hs_box{
     width: 450px;
+    height: 450px;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    padding: 25px 30px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+
+    /* width: 450px;
     height:450px;
     background: #fff;
     border-radius: 5px;
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
     pointer-events: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; */
 }
 
 .quiz_box header .timer{

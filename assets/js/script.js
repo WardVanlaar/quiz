@@ -14,6 +14,7 @@ const option_list = document.querySelector(".option_list");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 const timeCounter = document.querySelector(".timer_sec");
+const final_results = document.querySelector("#final_results");
 
 let time = 75;
 let que_count = 0;
@@ -91,32 +92,28 @@ function showResult(){
     scoreText.innerHTML = time;
 }
 
-submit_btn.addEventListener("submit", hiScoreHandler);
-
 var hiScoreHandler = function(event){
-    var userScoreInput = document.querySelector("input[name='#user_score']").value;
-    var initialsInput = document.querySelector("input[name='#initials']").value;
+    console.log("submit_btn");
+    var initialsInput = document.querySelector("#initials").value;
 
     if (!initialsInput) {
         alert("You need to enter your initials!");
         return false;
     }
 
-    document.querySelector("input[name='#user_score']").value = "";
-    document.querySelector("select[name='#initials']").value = "";
-
     var taskDataObj = {
-      name: userScoreInput,
+      score: time,
       name: initialsInput,
     };
-
-    hiScore(taskDataObj);
     console.log(taskDataObj);
-
+    
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
-    final_results.innerHTML = initialsInput + time;
+
+    final_results.textContent = `Name: ${taskDataObj.name} Score: ${taskDataObj.score}`;
 }
+
+submit_btn.addEventListener("click", hiScoreHandler);
 
 //timer function
 function startTimer(time){
@@ -145,4 +142,3 @@ function queCounter(index){
     //creating a new span tag and passing the question number and total question
     let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
 }
-
