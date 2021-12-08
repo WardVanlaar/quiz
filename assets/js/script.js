@@ -9,6 +9,7 @@ const chs_btn = document.querySelector("#chs_btn");
 const info_box = document.querySelector(".info_box")
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
+const hs_box = document.querySelector(".hs_box");
 const option_list = document.querySelector(".option_list");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
@@ -48,19 +49,6 @@ function showQuestions(index){
     }
 }
 
-function showResult(){
-    quiz_box.classList.remove("activeQuiz"); //hide quiz box
-    result_box.classList.add("activeResult"); //show result box
-    const scoreText = result_box.querySelector("#user_score");
-    time++;
-    scoreText.innerHTML = time;  //adding new span tag inside score_Text
-}
-
-function highScore(){
-    result_box.classList.remove("activeResult"); //hide result box
-    hs_box.classList.add("activeHs"); //show high score box
-}
-
 //if user clicked on option
 function optionSelected(answer){
     let userAns = answer.textContent; //getting user selected option
@@ -95,12 +83,40 @@ function optionSelected(answer){
     }
 }
 
-// function noClick() {
-//     if (time==0) {
-//         clearInterval(counter);
-//         scoreText.innerHTML = "0"; 
-//     }
-// }
+function showResult(){
+    quiz_box.classList.remove("activeQuiz"); 
+    result_box.classList.add("activeResult");
+    const scoreText = result_box.querySelector("#user_score");
+    time++;
+    scoreText.innerHTML = time;
+}
+
+submit_btn.addEventListener("submit", hiScoreHandler);
+
+var hiScoreHandler = function(event){
+    var userScoreInput = document.querySelector("input[name='#user_score']").value;
+    var initialsInput = document.querySelector("input[name='#initials']").value;
+
+    if (!initialsInput) {
+        alert("You need to enter your initials!");
+        return false;
+    }
+
+    document.querySelector("input[name='#user_score']").value = "";
+    document.querySelector("select[name='#initials']").value = "";
+
+    var taskDataObj = {
+      name: userScoreInput,
+      name: initialsInput,
+    };
+
+    hiScore(taskDataObj);
+    console.log(taskDataObj);
+
+    result_box.classList.remove("activeResult");
+    hs_box.classList.add("activeHs");
+    final_results.innerHTML = initialsInput + time;
+}
 
 //timer function
 function startTimer(time){
