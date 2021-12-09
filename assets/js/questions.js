@@ -4,7 +4,7 @@ let questions = [
     {
     numb: 1,
     question: "Commonly used data types DO Not include:",
-    answer: "alerts",
+    answer: "3. alerts",
     options: [
       "1. strings",
       "2. booleans",
@@ -15,7 +15,7 @@ let questions = [
     {
     numb: 2,
     question: "Arrays in JavaScript can be used to store __________.",
-    answer: "all of the above",
+    answer: "4. all of the above",
     options: [
       "1. numbers and strings",
       "2. other arrays",
@@ -26,7 +26,7 @@ let questions = [
     {
     numb: 3,
     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-    answer: "console.log",
+    answer: "4. console.log",
     options: [
       "1. JavaScript",
       "2. terminal/bash",
@@ -37,7 +37,7 @@ let questions = [
     {
     numb: 4,
     question: "String values must be enclosed within________when being assigned to variables.",
-    answer: "quotes",
+    answer: "3. quotes",
     options: [
       "1. commas",
       "2. curly brackets",
@@ -48,7 +48,7 @@ let questions = [
     {
     numb: 5,
     question: "The condition in an if / else statement is enclosed with_________.",
-    answer: "curly brackets",
+    answer: "3. curly brackets",
     options: [
       "1. quotes",
       "2. curly brackets",

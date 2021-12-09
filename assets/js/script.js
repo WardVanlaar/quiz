@@ -9,10 +9,12 @@ const chs_btn = document.querySelector("#chs_btn");
 const info_box = document.querySelector(".info_box")
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
+const hs_box = document.querySelector(".hs_box");
 const option_list = document.querySelector(".option_list");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 const timeCounter = document.querySelector(".timer_sec");
+const final_results = document.querySelector("#final_results");
 const quizTimeCounter = document.querySelector(".timer_sec_quiz")
 
 let time = 75;
@@ -49,19 +51,6 @@ function showQuestions(index){
     }
 }
 
-function showResult(){
-    quiz_box.classList.remove("activeQuiz"); //hide quiz box
-    result_box.classList.add("activeResult"); //show result box
-    const scoreText = result_box.querySelector("#user_score");
-    time++;
-    scoreText.innerHTML = time;  //adding new span tag inside score_Text
-}
-
-function highScore(){
-    result_box.classList.remove("activeResult"); //hide result box
-    hs_box.classList.add("activeHs"); //show high score box
-}
-
 //if user clicked on option
 function optionSelected(answer){
     let userAns = answer.textContent; //getting user selected option
@@ -96,12 +85,37 @@ function optionSelected(answer){
     }
 }
 
-// function noClick() {
-//     if (time==0) {
-//         clearInterval(counter);
-//         scoreText.innerHTML = "0"; 
-//     }
-// }
+function showResult(){
+    quiz_box.classList.remove("activeQuiz"); 
+    result_box.classList.add("activeResult");
+    const scoreText1 = result_box.querySelector("#user_score1");
+    const scoreText2 = result_box.querySelector("#user_score2");
+    time++;
+    scoreText1.innerHTML = time;
+    scoreText2.innerHTML = time;
+}
+
+function hiScoreHandler(event) {
+    var initialsInput = document.querySelector("#initials").value;
+    if (!initialsInput) {
+        alert("You need to enter your initials!");
+        return false;
+    }
+
+    var resultsDataObj = {
+        score: time,
+        name: initialsInput,
+    };
+    
+    console.log(resultsDataObj);
+
+    final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
+
+    result_box.classList.remove("activeResult");
+    hs_box.classList.add("activeHs");
+}
+
+submit_btn.addEventListener("click", hiScoreHandler);
 
 //timer function
 function startTimer(time){
@@ -119,8 +133,8 @@ function startTimer(time){
 //penalize function to subtract 10 seconds when wrong answer selected
 function timerPen() {
     clearInterval(counter);
-    time = timeCount.textContent - 10;
-    timeCount.textContent = time;
+    time = quizTimeCounter.textContent - 10;
+    quizTimeCounter.textContent = time;
     time--;
     startTimer(time);
 }
@@ -130,4 +144,3 @@ function queCounter(index){
     //creating a new span tag and passing the question number and total question
     let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
 }
-
