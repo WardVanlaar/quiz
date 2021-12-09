@@ -27,9 +27,10 @@ let widthValue = 0;
 start_btn.onclick = ()=>{
     info_box.classList.remove("activeInfo"); //hide intro
     quiz_box.classList.add("activeQuiz"); //show quiz box
+    startTimer(75); //calling startTimer function
     showQuestions(0); //calling showQestions function
     queCounter(1);
-    startTimer(75); //calling startTimer function
+    
 }
 
 // getting questions and options from array
@@ -113,9 +114,38 @@ function hiScoreHandler(event) {
 
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
+
+    var saveHiS = function() {
+        localStorage.setItem("highScore", JSON.stringify(resultsDataObj));
+    };
+
+    saveHiS();
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);
+
+function goBack(event) {
+    location.reload();
+}
+
+gb_btn.addEventListener("click", goBack);
+
+function clear(event) {
+    localStorage.clear();
+    final_results.textContent = ` `;
+}
+
+chs_btn.addEventListener("click", clear);
+
+// function viewHiS(event) {
+//     info_box.classList.remove("activeInfo");
+//     quiz_box.classList.remove("activeQuiz"); 
+//     result_box.classList.remove("activeResult");
+//     hs_box.classList.add("activeHs");
+// }
+
+// hs_btn.addEventListener("click", viewHis);
+
 
 //timer function
 function startTimer(time){
