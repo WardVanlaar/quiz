@@ -88,30 +88,31 @@ function optionSelected(answer){
 function showResult(){
     quiz_box.classList.remove("activeQuiz"); 
     result_box.classList.add("activeResult");
-    const scoreText = result_box.querySelector("#user_score");
+    const scoreText1 = result_box.querySelector("#user_score1");
+    const scoreText2 = result_box.querySelector("#user_score2");
     time++;
-    scoreText.innerHTML = time;
+    scoreText1.innerHTML = time;
+    scoreText2.innerHTML = time;
 }
 
-var hiScoreHandler = function(event){
-    console.log("submit_btn");
+function hiScoreHandler(event) {
     var initialsInput = document.querySelector("#initials").value;
-
     if (!initialsInput) {
         alert("You need to enter your initials!");
         return false;
     }
 
-    var taskDataObj = {
-      score: time,
-      name: initialsInput,
+    var resultsDataObj = {
+        score: time,
+        name: initialsInput,
     };
-    console.log(taskDataObj);
     
+    console.log(resultsDataObj);
+
+    final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
+
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
-
-    final_results.textContent = `Name: ${taskDataObj.name} Score: ${taskDataObj.score}`;
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);
@@ -132,8 +133,8 @@ function startTimer(time){
 //penalize function to subtract 10 seconds when wrong answer selected
 function timerPen() {
     clearInterval(counter);
-    time = timeCount.textContent - 10;
-    timeCount.textContent = time;
+    time = quizTimeCounter.textContent - 10;
+    quizTimeCounter.textContent = time;
     time--;
     startTimer(time);
 }
