@@ -15,7 +15,8 @@ const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 const timeCounter = document.querySelector(".timer_sec");
 const final_results = document.querySelector("#final_results");
-const quizTimeCounter = document.querySelector(".timer_sec_quiz")
+const quizTimeCounter = document.querySelector(".timer_sec_quiz");
+const NO_OF_HIGH_SCORES = 10;
 
 let time = 75;
 let que_count = 0;
@@ -115,11 +116,18 @@ function hiScoreHandler(event) {
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
 
-    var saveHiS = function() {
-        localStorage.setItem("highScore", JSON.stringify(resultsDataObj));
-    };
-
-    saveHiS();
+    // var score = 0
+    // var highscore = localStorage.getItem();
+    // console.log(highscore);
+    
+    // if (highscore !== null) {
+    //    if (score > highscore) {
+    //       localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    //    }
+    // } else {
+    //    localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    // }
+        
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);
