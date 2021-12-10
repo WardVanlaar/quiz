@@ -1,7 +1,9 @@
 //code adapted from https://www.codingnepalweb.com/quiz-app-with-timer-javascript/
 
 //selecting all required elements
-const hs_btn = document.querySelector("#hs_btn");
+const hs_btn1 = document.querySelector("#hs_btn1");
+const hs_btn2 = document.querySelector("#hs_btn2");
+const hs_btn3 = document.querySelector("#hs_btn3");
 const start_btn = document.querySelector("#start_btn");
 const submit_btn = document.querySelector("#submit_btn");
 const gb_btn = document.querySelector("#gb_btn");
@@ -30,8 +32,7 @@ start_btn.onclick = ()=>{
     quiz_box.classList.add("activeQuiz"); //show quiz box
     startTimer(75); //calling startTimer function
     showQuestions(0); //calling showQestions function
-    queCounter(1);
-    
+    queCounter(1);    
 }
 
 // getting questions and options from array
@@ -87,6 +88,7 @@ function optionSelected(answer){
     }
 }
 
+//function to show results
 function showResult(){
     quiz_box.classList.remove("activeQuiz"); 
     result_box.classList.add("activeResult");
@@ -97,6 +99,7 @@ function showResult(){
     scoreText2.innerHTML = time;
 }
 
+//function to handle initials
 function hiScoreHandler(event) {
     var initialsInput = document.querySelector("#initials").value;
     if (!initialsInput) {
@@ -114,9 +117,12 @@ function hiScoreHandler(event) {
     final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
 
     result_box.classList.remove("activeResult");
-    hs_box.classList.add("activeHs");
+    hs_box.classList.add("activeHs");     
+}
 
-    // var score = 0
+submit_btn.addEventListener("click", hiScoreHandler);
+
+ // var score = 0
     // var highscore = localStorage.getItem();
     // console.log(highscore);
     
@@ -127,17 +133,15 @@ function hiScoreHandler(event) {
     // } else {
     //    localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
     // }
-        
-}
 
-submit_btn.addEventListener("click", hiScoreHandler);
-
+//function to reload start page
 function goBack(event) {
     location.reload();
 }
 
 gb_btn.addEventListener("click", goBack);
 
+//function to clear high scores
 function clear(event) {
     localStorage.clear();
     final_results.textContent = ` `;
@@ -145,15 +149,29 @@ function clear(event) {
 
 chs_btn.addEventListener("click", clear);
 
-// function viewHiS(event) {
-//     info_box.classList.remove("activeInfo");
-//     quiz_box.classList.remove("activeQuiz"); 
-//     result_box.classList.remove("activeResult");
-//     hs_box.classList.add("activeHs");
-// }
+//function to go from info box to high score
+function viewHiS1(event) {
+    info_box.classList.remove("activeInfo");
+    hs_box.classList.add("activeHs");
+}
 
-// hs_btn.addEventListener("click", viewHis);
+hs_btn1.addEventListener("click", viewHiS1);
 
+//function to go from quiz box to high score
+function viewHiS2(event) {
+    quiz_box.classList.remove("activeQuiz"); 
+    hs_box.classList.add("activeHs");
+}
+
+hs_btn2.addEventListener("click", viewHiS2);
+
+//function to from result box to high score;
+function viewHiS3(event) {
+    result_box.classList.remove("activeResult"); 
+    hs_box.classList.add("activeHs");
+}
+
+hs_btn3.addEventListener("click", viewHiS3);
 
 //timer function
 function startTimer(time){
