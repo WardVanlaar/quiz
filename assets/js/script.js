@@ -116,7 +116,7 @@ function hiScoreHandler(event) {
     }
 
     var resultsDataObj = {
-        score: time,
+        score: quizTimeCounter.textContent,
         name: initialsInput,
     }
     
@@ -130,12 +130,11 @@ function hiScoreHandler(event) {
     hs_box.classList.add("activeHs");
     
     if (highScore !== null) {
-        if (quizTimeCounter > resultsDataObj.score) {
+        if (quizTimeCounter.textContent > `${resultsDataObj.score}`) {
             localStorage.removeItem("resultsDataObj");
             localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
         }
         else {
-            localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
         }
     }
 }
