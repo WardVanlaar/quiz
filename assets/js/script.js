@@ -115,28 +115,34 @@ function hiScoreHandler(event) {
         return false;
     }
 
+    
     var resultsDataObj = {
         score: quizTimeCounter.textContent,
-        name: initialsInput,
+        name: initialsInput
     }
+
+    var hiSc = [];
+    hiSc.push(resultsDataObj);
+    localStorage.setItem('allScores', JSON.stringify(hiSc));
     
     console.log(resultsDataObj);
+    console.log(hiSc);
 
-    var highScore = localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    //var highScore = localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
 
     final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
 
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
     
-    if (highScore !== null) {
-        if (quizTimeCounter.textContent > `${resultsDataObj.score}`) {
-            localStorage.removeItem("resultsDataObj");
-            localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-        }
-        else {
-        }
-    }
+    // if (highScore !== null) {
+    //     if (quizTimeCounter.textContent > `${resultsDataObj.score}`) {
+    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    //         alert(playerInfo.name + " now has the high score of " + !");
+    //     }
+    //     else {
+    //     }
+    // }
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);

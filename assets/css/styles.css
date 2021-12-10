@@ -265,7 +265,18 @@ section .option_list .option:hover{
     text-align: left;
 }
 
-.results1, .results2 {
+.result_box {
+    /* position:absolute; */
+    padding: 5px;
+}
+
+.result_box section {
+    width: 500px;
+}
+
+.results1 .results2 .complete_text {
+    /* position: relative; */
+    left: 5px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
