@@ -1,7 +1,9 @@
 //code adapted from https://www.codingnepalweb.com/quiz-app-with-timer-javascript/
 
 //selecting all required elements
-const hs_btn = document.querySelector("#hs_btn");
+const hs_btn1 = document.querySelector("#hs_btn1");
+const hs_btn2 = document.querySelector("#hs_btn2");
+const hs_btn3 = document.querySelector("#hs_btn3");
 const start_btn = document.querySelector("#start_btn");
 const submit_btn = document.querySelector("#submit_btn");
 const gb_btn = document.querySelector("#gb_btn");
@@ -15,7 +17,7 @@ const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 const timeCounter = document.querySelector(".timer_sec");
 const final_results = document.querySelector("#final_results");
-const quizTimeCounter = document.querySelector(".timer_sec_quiz")
+const quizTimeCounter = document.querySelector(".timer_sec_quiz");
 
 let time = 75;
 let que_count = 0;
@@ -27,9 +29,8 @@ let widthValue = 0;
 start_btn.onclick = ()=>{
     info_box.classList.remove("activeInfo"); //hide intro
     quiz_box.classList.add("activeQuiz"); //show quiz box
-    showQuestions(0); //calling showQestions function
-    queCounter(1);
     startTimer(75); //calling startTimer function
+    showQuestions(0); //calling showQestions function  
 }
 
 // getting questions and options from array
@@ -52,49 +53,62 @@ function showQuestions(index){
 }
 
 //if user clicked on option
-function optionSelected(answer){
+
+function optionSelected(answer){ 
     let userAns = answer.textContent; //getting user selected option
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
-    
-    if (userAns == correcAns && (que_numb <= questions.length-1) && time>0) { //if user selected option is equal to array's correct answer
+
+    console.log("user answer: " + userAns);
+    console.log("correct answer: " + correcAns);
+    var right_wrong = document.querySelector(".right_wrong");
+    if (userAns == correcAns) {
+        let r_tag = '<span>' + "Correct" + '</span>';
+        right_wrong.innerHTML = r_tag;
+        console.log(r_tag);
+    } else {
+        let w_tag = '<span>' + "Wrong" + '</span>';
+        right_wrong.innerHTML = w_tag;
+        console.log(w_tag);
+    }
+
+    if (userAns == correcAns && (que_numb <= questions.length-1) && time>0) {
         que_count++;
         que_numb++;
         showQuestions(que_count);
-        queCounter(que_numb);
+        console.log(quizTimeCounter);
     } else if (userAns != correcAns && (que_numb <= questions.length-1) && time>0) {
         que_count++;
         que_numb++;
         showQuestions(que_count);
-        queCounter(que_numb);
         timerPen();
-        console.log(time);
+        console.log(quizTimeCounter);
     } else if (userAns == correcAns && que_numb == questions.length && time>0) {
         showQuestions(que_count);
-        queCounter(que_numb);
         clearInterval(counter);
-        console.log(time);
         showResult();
+        console.log(quizTimeCounter);
     } else if (userAns != correcAns && que_numb == questions.length && time>0) {
         showQuestions(que_count);
-        queCounter(que_numb);
         timerPen();
         clearInterval(counter);
-        console.log(time);
         showResult();
+        console.log(quizTimeCounter);
     }
 }
 
+//function to show results
 function showResult(){
     quiz_box.classList.remove("activeQuiz"); 
     result_box.classList.add("activeResult");
     const scoreText1 = result_box.querySelector("#user_score1");
     const scoreText2 = result_box.querySelector("#user_score2");
-    time++;
-    scoreText1.innerHTML = time;
-    scoreText2.innerHTML = time;
+    //time++;
+    scoreText1.innerHTML = quizTimeCounter.textContent;
+    scoreText2.innerHTML = quizTimeCounter.textContent;
 }
 
+//function to handle initials
 function hiScoreHandler(event) {
     var initialsInput = document.querySelector("#initials").value;
     if (!initialsInput) {
@@ -105,27 +119,79 @@ function hiScoreHandler(event) {
     var resultsDataObj = {
         score: time,
         name: initialsInput,
-    };
+    }
     
     console.log(resultsDataObj);
+
+    var highscore = localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
 
     final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
 
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
+    
+    // if (highscore !== null) {
+    //     if (userscore > highscore) {
+    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    //     }
+    //     else {
+    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    //     }
+    // }
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);
+
+//function to reload start page
+function goBack(event) {
+    location.reload();
+}
+
+gb_btn.addEventListener("click", goBack);
+
+//function to clear high scores
+function clear(event) {
+    localStorage.clear();
+    final_results.textContent = ` `;
+}
+
+chs_btn.addEventListener("click", clear);
+
+//function to go from info box to high score
+function viewHiS1(event) {
+    info_box.classList.remove("activeInfo");
+    hs_box.classList.add("activeHs");
+}
+
+hs_btn1.addEventListener("click", viewHiS1);
+
+//function to go from quiz box to high score
+function viewHiS2(event) {
+    quiz_box.classList.remove("activeQuiz"); 
+    hs_box.classList.add("activeHs");
+}
+
+hs_btn2.addEventListener("click", viewHiS2);
+
+//function to from result box to high score;
+function viewHiS3(event) {
+    result_box.classList.remove("activeResult"); 
+    hs_box.classList.add("activeHs");
+}
+
+hs_btn3.addEventListener("click", viewHiS3);
 
 //timer function
 function startTimer(time){
     counter = setInterval(timer, 1000);
     function timer(){
-        console.log(quizTimeCounter, time);
-        quizTimeCounter.innerHTML = time; //changing the value of timeCount with time value
-        time--; //decrement the time value
-        if(time < 0) {
+        if(time>=0){
+            console.log(quizTimeCounter, time);
+            quizTimeCounter.innerHTML = time;
+            time--;
+        } else {
             clearInterval(counter);
+            showResult();
         }
     }
 }
@@ -137,10 +203,4 @@ function timerPen() {
     quizTimeCounter.textContent = time;
     time--;
     startTimer(time);
-}
-
-//keeping track of question numbers
-function queCounter(index){
-    //creating a new span tag and passing the question number and total question
-    let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
 }

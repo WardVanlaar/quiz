@@ -13,7 +13,7 @@
         <!--Intro page-->
         <div class="page info_box">
             <header>
-                <div class="hs_btn"><button id="hs_btn">View high scores</button></div>
+                <div class="hs_btn"><button id="hs_btn1">View high scores</button></div>
                 <div class="timer">
                     <div class="time_left_txt">Time:</div>
                     <div class="timer_sec">75</div>
@@ -29,7 +29,7 @@
         <!-- Quiz Box -->
         <div class="page quiz_box">
             <header>
-                <div class="hs_btn" id="hs_btn"><button>View high scores</button></div>
+                <div class="hs_btn" ><button id="hs_btn2">View high scores</button></div>
                 <div class="timer">
                     <div class="time_left_txt">Time:</div>
                     <div class="timer_sec_quiz"></div>
@@ -40,13 +40,15 @@
                 </div>
                 <div class="option_list">
                 </div>
+                <div class="right_wrong">
+                </div>
             </section>
         </div>
 
         <!-- Results -->
         <div class="page result_box">
             <header>
-                <div class="hs_btn" id="hs_btn"><button>View high scores</button></div>
+                <div class="hs_btn" ><button id="hs_btn3">View high scores</button></div>
                 <div class="timer">
                     <div class="time_left_txt">Time:</div>
                     <div id="user_score1"></div>
@@ -54,23 +56,28 @@
             </header>
             <section>
                 <div class="complete_text">All done!</div>
-                <div class="score_text">Your final score is</div>
-                <div class="score_text" id="user_score2" name="user_score"></div>
-                <div class="form_group">
-                    <input type="text" id="initials" name="initials" placeholder="Enter initials" />
+                <div class="results1">
+                    <div class="score_text">Your final score is</div>
+                    <div class="score_text" id="user_score2" name="user_score"></div>
                 </div>
-                <div class="btn">
-                    <button class="restart" id="submit_btn">Submit</button>
+                <div class="results2">
+                    <div class="form_group">
+                        <p>Enter your initials</p>
+                        <input type="text" id="initials" name="initials"/>
+                    </div>
+                    <div class="btn">
+                        <button class="restart" id="submit_btn">Submit</button>
+                    </div>
                 </div>
             </section>
         </div>
 
-        <div class="hs_box">
+        <div class="page hs_box">
             <section>
                 <h1>High scores</h1>
                 <div class="final_results" id="final_results"></div>
-                <button class="btn" id="gb-btn">Go back</button>
-                <button class="btn" id="chs-btn">Clear high scores</button>
+                <button class="btn" id="gb_btn">Go back</button>
+                <button class="btn" id="chs_btn">Clear high scores</button>
             </section>
         </div>
         <script src="./assets/js/questions.js"></script>
