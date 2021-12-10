@@ -114,25 +114,24 @@ function hiScoreHandler(event) {
     
     console.log(resultsDataObj);
 
+    var highscore = localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+
     final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
 
     result_box.classList.remove("activeResult");
-    hs_box.classList.add("activeHs");     
+    hs_box.classList.add("activeHs");
+    
+    // if (highscore !== null) {
+    //     if (userscore > highscore) {
+    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    //     }
+    //     else {
+    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    //     }
+    // }
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);
-
- // var score = 0
-    // var highscore = localStorage.getItem();
-    // console.log(highscore);
-    
-    // if (highscore !== null) {
-    //    if (score > highscore) {
-    //       localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-    //    }
-    // } else {
-    //    localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-    // }
 
 //function to reload start page
 function goBack(event) {
