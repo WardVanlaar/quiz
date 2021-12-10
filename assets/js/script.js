@@ -59,6 +59,19 @@ function optionSelected(answer){
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
 
+    console.log("user answer: " + userAns);
+    console.log("correct answer: " + correcAns);
+    const right_wrong = document.querySelector(".right_wrong");
+    if (userAns == correcAns) {
+        let r_tag = '<span>' + "Correct" + '</span>';
+        right_wrong.innterHTML = r_tag;
+        console.log(r_tag);
+    } else {
+        let w_tag = '<span>' + "Wrong" + '</span>';
+        right_wrong.innterHTML = w_tag;
+        console.log(w_tag);
+    }
+
     if (userAns == correcAns && (que_numb <= questions.length-1) && time>0) {
         que_count++;
         que_numb++;
@@ -81,15 +94,6 @@ function optionSelected(answer){
         clearInterval(counter);
         showResult();
         console.log(quizTimeCounter);
-    }
-
-    const right_wrong = document.querySelector(".right_wrong");
-    if (userAns == correcAns) {
-        let r_tag = '<span>' + "Correct" + '</span>';
-        right_wrong.innterHTML = r_tag;
-    } else {
-        let w_tag = '<span>' + "Wrong" + '</span>';
-        right_wrong.innterHTML = w_tag;
     }
 }
 
