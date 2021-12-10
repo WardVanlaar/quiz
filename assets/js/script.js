@@ -54,20 +54,10 @@ function showQuestions(index){
 
 //if user clicked on option
 
-function optionSelected(answer){
+function optionSelected(answer){ 
     let userAns = answer.textContent; //getting user selected option
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
-    
-    // function rightWrong(index){
-    //     const right_wrong = document.querySelector(".right_wrong");
-    //     if (userAns == correcAns) {
-    //         let right_tag = '<span>' + "Correct" + '</span>';
-    //     }
-    //     else {
-    //         let rigth_tag = '<span>' + "Wrong" + '</span>';
-    //     }
-    // }
 
     if (userAns == correcAns && (que_numb <= questions.length-1) && time>0) {
         que_count++;
@@ -91,6 +81,17 @@ function optionSelected(answer){
         clearInterval(counter);
         showResult();
         console.log(quizTimeCounter);
+    }
+
+    const right_wrong = document.querySelector(".right_wrong");
+    var tagSelected = document.querySelector(".right_wrong");
+    tagSelected.remove();
+    if (userAns == correcAns) {
+        let r_tag = '<span>' + "Correct" + '</span>';
+        right_wrong.innterHTML = r_tag;
+    } else {
+        let w_tag = '<span>' + "Wrong" + '</span>';
+        right_wrong.innterHTML = w_tag;
     }
 }
 
