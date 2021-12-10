@@ -84,8 +84,6 @@ function optionSelected(answer){
     }
 
     const right_wrong = document.querySelector(".right_wrong");
-    var tagSelected = document.querySelector(".right_wrong");
-    tagSelected.remove();
     if (userAns == correcAns) {
         let r_tag = '<span>' + "Correct" + '</span>';
         right_wrong.innterHTML = r_tag;
