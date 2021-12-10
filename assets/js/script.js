@@ -96,7 +96,7 @@ function showResult(){
     const scoreText2 = result_box.querySelector("#user_score2");
     time++;
     scoreText1.innerHTML = time;
-    scoreText2.innerHTML = time;
+    scoreText2.innerHTML = " " + time;
 }
 
 //function to handle initials
