@@ -61,14 +61,14 @@ function optionSelected(answer){
 
     console.log("user answer: " + userAns);
     console.log("correct answer: " + correcAns);
-    const right_wrong = document.querySelector(".right_wrong");
+    var right_wrong = document.querySelector(".right_wrong");
     if (userAns == correcAns) {
         let r_tag = '<span>' + "Correct" + '</span>';
-        right_wrong.innterHTML = r_tag;
+        right_wrong.innerHTML = r_tag;
         console.log(r_tag);
     } else {
         let w_tag = '<span>' + "Wrong" + '</span>';
-        right_wrong.innterHTML = w_tag;
+        right_wrong.innerHTML = w_tag;
         console.log(w_tag);
     }
 
