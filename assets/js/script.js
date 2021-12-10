@@ -28,9 +28,9 @@ let widthValue = 0;
 
 // if startQuiz button clicked
 start_btn.onclick = ()=>{
+    startTimer(75); //calling startTimer function
     info_box.classList.remove("activeInfo"); //hide intro
     quiz_box.classList.add("activeQuiz"); //show quiz box
-    startTimer(75); //calling startTimer function
     showQuestions(0); //calling showQestions function
     queCounter(1);    
 }
@@ -55,16 +55,28 @@ function showQuestions(index){
 }
 
 //if user clicked on option
+
 function optionSelected(answer){
     let userAns = answer.textContent; //getting user selected option
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
     
+    // function rightWrong(index){
+    //     const right_wrong = document.querySelector(".right_wrong");
+    //     if (userAns == correcAns) {
+    //         let right_tag = '<span>' + "Correct" + '</span>';
+    //     }
+    //     else {
+    //         let rigth_tag = '<span>' + "Wrong" + '</span>';
+    //     }
+    // }
+
     if (userAns == correcAns && (que_numb <= questions.length-1) && time>0) { //if user selected option is equal to array's correct answer
         que_count++;
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
+        //rightWrong(que_count);
     } else if (userAns != correcAns && (que_numb <= questions.length-1) && time>0) {
         que_count++;
         que_numb++;
@@ -88,6 +100,7 @@ function optionSelected(answer){
     }
 }
 
+
 //function to show results
 function showResult(){
     quiz_box.classList.remove("activeQuiz"); 
@@ -96,7 +109,7 @@ function showResult(){
     const scoreText2 = result_box.querySelector("#user_score2");
     time++;
     scoreText1.innerHTML = time;
-    scoreText2.innerHTML = " " + time;
+    scoreText2.innerHTML = time;
 }
 
 //function to handle initials
