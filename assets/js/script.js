@@ -103,7 +103,6 @@ function showResult(){
     result_box.classList.add("activeResult");
     const scoreText1 = result_box.querySelector("#user_score1");
     const scoreText2 = result_box.querySelector("#user_score2");
-    //time++;
     scoreText1.innerHTML = quizTimeCounter.textContent;
     scoreText2.innerHTML = quizTimeCounter.textContent;
 }
@@ -123,21 +122,22 @@ function hiScoreHandler(event) {
     
     console.log(resultsDataObj);
 
-    var highscore = localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+    var highScore = localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
 
     final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
 
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
     
-    // if (highscore !== null) {
-    //     if (userscore > highscore) {
-    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-    //     }
-    //     else {
-    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-    //     }
-    // }
+    if (highScore !== null) {
+        if (quizTimeCounter > resultsDataObj.score) {
+            localStorage.removeItem("resultsDataObj");
+            localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+        }
+        else {
+            localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
+        }
+    }
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);
