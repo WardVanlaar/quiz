@@ -19,5 +19,7 @@ This is what it should look like:
 Made by Ward Vanlaar adapting code from: 
 
 https://www.codingnepalweb.com/quiz-app-with-timer-javascript/
+https://www.youtube.com/watch?v=jfOv18lCMmw
+https://www.youtube.com/watch?v=DFhmNLKwwGw
 
 Shout-out to Christian Sinai and AskBCS Learning Assistant for help with making span elements work.
