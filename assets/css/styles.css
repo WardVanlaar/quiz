@@ -32,12 +32,12 @@
 
 .info_box {
     width: 650px;
-    height: 450px;
+    height: 460px;
 }
 
 .quiz_box{
     width: 650px;
-    height: 450px;
+    height: 460px;
     background: #fff;
     border-radius: 5px;
     transform: translate(-50%, -50%) scale(0.9);
@@ -48,13 +48,15 @@
 
 .result_box{
     width: 650px;
-    height: 450px;
+    height: 460px;
     background: #fff;
     border-radius: 5px;
     display: flex;
     padding: 25px 30px;
     align-items: center;
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
     justify-content: center;
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
@@ -64,7 +66,7 @@
 
 .hs_box{
     width: 650px;
-    height: 450px;
+    height: 460px;
     background: #fff;
     border-radius: 5px;
     display: flex;
@@ -250,7 +252,7 @@ section .option_list .option:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 145px;
+    width: 135px;
     font-weight: 400;
     font-size: 17px;
     user-select: none;
@@ -266,7 +268,7 @@ section .option_list .option:hover{
 }
 
 .result_box {
-    /* position:absolute; */
+    position:absolute;
     padding: 5px;
 }
 
@@ -274,12 +276,25 @@ section .option_list .option:hover{
     width: 500px;
 }
 
-.results1 .results2 .complete_text {
-    /* position: relative; */
+.results1, .results2, .complete_text {
+    position: relative;
     left: 5px;
+    bottom: 50px;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    /* justify-content: space-evenly; */
+    text-align: left;
+    justify-content: left;
 }
 
+.results2 {
+    width: 450px;
+}
+
+.right_wrong {
+    border-bottom: 1px solid grey;
+}
+
+#initials{
+    width: 100px;
+    height: 35px;
+}
