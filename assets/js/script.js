@@ -123,7 +123,7 @@ function saveHighScore() {
     highScores.sort((a, b) => b.score - a.score);
     highScores.splice(5);
 
-    localStorage.setItem("highscores", JSON.stringify(highScores));
+    localStorage.setItem("highScores", JSON.stringify(highScores));
     console.log(highScores);
 };
 
@@ -136,13 +136,13 @@ function hiScoreHandler(event) {
     }
   
     saveHighScore();
-    
+
     const highScoresList = document.getElementById("highScoresList");
     const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
     highScoresList.innterHTML = highScores
         .map(score => {
-            return `<li class="high-score">${score.name} - ${score.score}</li>`;
+            return `<li>${score.name} - ${score.score}</li>`;
         })
         .join("");
 
