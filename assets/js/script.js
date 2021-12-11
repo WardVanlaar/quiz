@@ -36,24 +36,21 @@ start_btn.onclick = ()=>{
 // getting questions and options from array
 function showQuestions(index){
     const que_text = document.querySelector(".que_text");
-    //creating a new span and div tag for question and option and passing the value using array index
     let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
     let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
-    que_text.innerHTML = que_tag; //adding new span tag inside que_tag
-    option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+    que_text.innerHTML = que_tag;
+    option_list.innerHTML = option_tag;
     
     const option = option_list.querySelectorAll(".option");
-    // set onclick attribute to all available options
     for(i=0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
 }
 
 //if user clicked on option
-
 function optionSelected(answer){ 
     let userAns = answer.textContent; //getting user selected option
     let correcAns = questions[que_count].answer; //getting correct answer from array
@@ -103,41 +100,54 @@ function showResult(){
     result_box.classList.add("activeResult");
     const scoreText1 = result_box.querySelector("#user_score1");
     const scoreText2 = result_box.querySelector("#user_score2");
-    //time++;
     scoreText1.innerHTML = quizTimeCounter.textContent;
-    scoreText2.innerHTML = quizTimeCounter.textContent;
+    scoreText2.textContent = ` ${quizTimeCounter.textContent}`;
 }
 
-//function to handle initials
+//function to save high scores; adapted from https://www.youtube.com/watch?v=DFhmNLKwwGw
+const finalScore = document.getElementById("user_score2");
+const mostRecentScore = localStorage.getItem("mostRecentScore");
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+const MAX_HIGH_SCORES = 5;
+console.log(highScores);
+
+finalScore.innerText = mostRecentScore;
+
+function saveHighScore() {
+    const initialsInput = document.querySelector("#initials").value;
+    const score = {
+        score: quizTimeCounter.textContent,
+        name: initialsInput
+    };
+    highScores.push(score);
+    highScores.sort((a, b) => b.score - a.score);
+    highScores.splice(5);
+
+    localStorage.setItem("highscores", JSON.stringify(highScores));
+    console.log(highScores);
+};
+
+//function to handle high score; adapted from https://www.youtube.com/watch?v=jfOv18lCMmw
 function hiScoreHandler(event) {
-    var initialsInput = document.querySelector("#initials").value;
+    const initialsInput = document.querySelector("#initials").value;
     if (!initialsInput) {
         alert("You need to enter your initials!");
         return false;
     }
-
-    var resultsDataObj = {
-        score: time,
-        name: initialsInput,
-    }
+  
+    saveHighScore();
     
-    console.log(resultsDataObj);
+    const highScoresList = document.getElementById("highScoresList");
+    const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-    var highscore = localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-
-    final_results.textContent = `1: ${resultsDataObj.name} - ${resultsDataObj.score}`;
+    highScoresList.innterHTML = highScores
+        .map(score => {
+            return `<li class="high-score">${score.name} - ${score.score}</li>`;
+        })
+        .join("");
 
     result_box.classList.remove("activeResult");
     hs_box.classList.add("activeHs");
-    
-    // if (highscore !== null) {
-    //     if (userscore > highscore) {
-    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-    //     }
-    //     else {
-    //         localStorage.setItem("highscore", JSON.stringify(resultsDataObj));
-    //     }
-    // }
 }
 
 submit_btn.addEventListener("click", hiScoreHandler);
