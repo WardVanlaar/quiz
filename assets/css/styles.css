@@ -256,9 +256,6 @@ section .option_list .option:hover{
     font-weight: 400;
     font-size: 17px;
     user-select: none;
-    /* position: relative;
-    left: 175px;
-    top: 50px; */
 }
 
 .complete_text {
@@ -274,6 +271,7 @@ section .option_list .option:hover{
 
 .result_box section {
     width: 500px;
+    padding: 5px;
 }
 
 .results1, .results2, .complete_text {
@@ -283,11 +281,17 @@ section .option_list .option:hover{
     display: flex;
     flex-wrap: wrap;
     text-align: left;
-    justify-content: left;
+    justify-content: space-between;
+    left: 25px;
+}
+
+.results1 {
+    width: 37%;
 }
 
 .results2 {
-    width: 450px;
+    width: 400px;
+    /* vertical-align: middle; */
 }
 
 .right_wrong {
@@ -296,5 +300,7 @@ section .option_list .option:hover{
 
 #initials{
     width: 100px;
-    height: 35px;
+    height: 45px;
+    border: 1px solid grey;
+    border-radius: 5px;
 }
