@@ -27,10 +27,12 @@ let widthValue = 0;
 
 // if startQuiz button clicked
 start_btn.onclick = ()=>{
-    info_box.classList.remove("activeInfo"); //hide intro
-    quiz_box.classList.add("activeQuiz"); //show quiz box
-    startTimer(75); //calling startTimer function
-    showQuestions(0); //calling showQestions function  
+    info_box.classList.remove("activeInfo");
+    quiz_box.classList.add("activeQuiz");
+    startTimer(75);
+    setTimeout(()=>{
+        showQuestions(0);
+        }, 1000);  
 }
 
 // getting questions and options from array
@@ -52,9 +54,9 @@ function showQuestions(index){
 
 //if user clicked on option
 function optionSelected(answer){ 
-    let userAns = answer.textContent; //getting user selected option
-    let correcAns = questions[que_count].answer; //getting correct answer from array
-    const allOptions = option_list.children.length; //getting all option items
+    let userAns = answer.textContent;
+    let correcAns = questions[que_count].answer;
+    const allOptions = option_list.children.length;
 
     console.log("user answer: " + userAns);
     console.log("correct answer: " + correcAns);
