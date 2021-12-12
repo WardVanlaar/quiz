@@ -22,4 +22,4 @@ https://www.codingnepalweb.com/quiz-app-with-timer-javascript/
 https://www.youtube.com/watch?v=jfOv18lCMmw
 https://www.youtube.com/watch?v=DFhmNLKwwGw
 
-Shout-out to Christian Sinai and AskBCS Learning Assistant for help with making span elements work.
+Shout-out to Christian Sinai and AskBCS Learning Assistant for help with making span elements work and some debugging. Thanks to my fellow student Tristan Crain for help with debugging!
