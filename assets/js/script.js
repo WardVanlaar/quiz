@@ -140,9 +140,9 @@ function hiScoreHandler(event) {
     const highScoresList = document.getElementById("highScoresList");
     const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-    highScoresList.innterHTML = highScores
-        .map(score => {
-            return `<li>${score.name} - ${score.score}</li>`;
+    highScoresList.innerHTML = highScores
+        .map(highScores => {
+            return `<li>${highScores.name} - ${highScores.score}</li>`;
         })
         .join("");
 
@@ -162,7 +162,7 @@ gb_btn.addEventListener("click", goBack);
 //function to clear high scores
 function clear(event) {
     localStorage.clear();
-    final_results.textContent = ` `;
+    highScoresList.textContent = ` `;
 }
 
 chs_btn.addEventListener("click", clear);
@@ -171,6 +171,14 @@ chs_btn.addEventListener("click", clear);
 function viewHiS1(event) {
     info_box.classList.remove("activeInfo");
     hs_box.classList.add("activeHs");
+    const highScoresList = document.getElementById("highScoresList");
+    const highScores = JSON.parse(localStorage.getItem("highScores"))
+    highScoresList.innerHTML = highScores;
+    highScoresList.innerHTML = highScores
+        .map(highScores => {
+            return `<li>${highScores.name} - ${highScores.score}</li>`;
+        })
+        .join("");
 }
 
 hs_btn1.addEventListener("click", viewHiS1);
@@ -179,6 +187,14 @@ hs_btn1.addEventListener("click", viewHiS1);
 function viewHiS2(event) {
     quiz_box.classList.remove("activeQuiz"); 
     hs_box.classList.add("activeHs");
+    const highScoresList = document.getElementById("highScoresList");
+    const highScores = JSON.parse(localStorage.getItem("highScores"))
+    highScoresList.innerHTML = highScores;
+    highScoresList.innerHTML = highScores
+        .map(highScores => {
+            return `<li>${highScores.name} - ${highScores.score}</li>`;
+        })
+        .join("");
 }
 
 hs_btn2.addEventListener("click", viewHiS2);
@@ -187,6 +203,14 @@ hs_btn2.addEventListener("click", viewHiS2);
 function viewHiS3(event) {
     result_box.classList.remove("activeResult"); 
     hs_box.classList.add("activeHs");
+    const highScoresList = document.getElementById("highScoresList");
+    const highScores = JSON.parse(localStorage.getItem("highScores"))
+    highScoresList.innerHTML = highScores;
+    highScoresList.innerHTML = highScores
+        .map(highScores => {
+            return `<li>${highScores.name} - ${highScores.score}</li>`;
+        })
+        .join("");
 }
 
 hs_btn3.addEventListener("click", viewHiS3);
